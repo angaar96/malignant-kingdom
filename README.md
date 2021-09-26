@@ -1,4 +1,4 @@
-﻿![alt text](./assets/images/readme\_head.png)
+﻿![alt text](./readme_head.png)
 
 # Malignant Kingdom
 
@@ -15,3 +15,9 @@ The game can be played in the console. Clone the repository down and play it usi
 ### Languages/Frameworks Used
 
 * Java
+
+### Credits
+
+ASCII art taken from [ASCII Art Archive](https://www.asciiart.eu/) and [ASCII.co.uk](https://ascii.co.uk/art)
+
+[Figma](https://www.figma.com/file/UQ7NcCBE9NScccttfMR9e2/Portfolio---Week-1?node-id=0%3A1). 
