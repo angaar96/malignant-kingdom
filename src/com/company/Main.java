@@ -277,7 +277,7 @@ public class Main {
         System.out.println("You drink the potion. You feel stronger.");
         System.out.println("");
         player.setPlayerStrength(50);
-        System.out.println("'YOUR STRENGTH: " + player.getPlayerStrength());
+        System.out.println("3YOUR STRENGTH: " + player.getPlayerStrength());
         System.out.println("");
         System.out.println("OLD SAGE: 'Good. Put this armor on.'");
         System.out.println("");
