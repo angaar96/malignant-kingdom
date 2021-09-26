@@ -10,14 +10,12 @@ Can you survive this malignant kingdom?
 
 ## Instructions
 
-The game can be played in the console. Clone the repository down and play it using your Java IDE of choice (e.g. IntelliJ).
+The game can be played in the console. Clone the repository and play it using your Java IDE of choice (e.g. IntelliJ).
 
-### Languages/Frameworks Used
+## Languages/Frameworks Used
 
 * Java
 
-### Credits
+## Credits
 
-ASCII art taken from [ASCII Art Archive](https://www.asciiart.eu/) and [ASCII.co.uk](https://ascii.co.uk/art)
-
-[Figma](https://www.figma.com/file/UQ7NcCBE9NScccttfMR9e2/Portfolio---Week-1?node-id=0%3A1). 
+ASCII art taken from [ASCII Art Archive](https://www.asciiart.eu/) and [ASCII.co.uk](https://ascii.co.uk/art) .
