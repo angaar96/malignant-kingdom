@@ -5,6 +5,7 @@ public class Player {
     private int playerHealth;
     private int playerStrength;
     private int playerArmorHealth;
+    private int noOfPotions;
 
     public Player(String playerName, int playerHealth, int playerStrength, int playerArmorHealth) {
         this.playerName = playerName;
@@ -41,6 +42,14 @@ public class Player {
 
     public void setPlayerArmorHealth(int playerArmorHealth) {
         this.playerArmorHealth = playerArmorHealth;
+    }
+
+    public int getNoOfPotions() {
+        return this.noOfPotions;
+    }
+
+    public void setNoOfPotions(int noOfPotions) {
+        this.noOfPotions = noOfPotions;
     }
 
 
