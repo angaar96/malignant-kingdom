@@ -129,33 +129,33 @@ public class Main {
         System.out.println("PLEASE ENTER A NAME: ");
         choice.nextLine();
         String playerName = choice.nextLine();
-        System.out.println("Hello " + playerName + ". My name is Uzahr.");
-        System.out.println("OLD MAN: " + playerName + ", you are weak. Let me heal you. " );
+        System.out.println("Hello " + playerName + ". My name is Uzahr. I am a sage.");
+        System.out.println("Uzahr: " + playerName + ", you are weak. Let me heal you. " );
         System.out.println("");
         System.out.println("He brandishes his walking stick. It's actually a magical staff in disguise.");
         Player player = new Player(playerName, 100, 25, 0);
         System.out.println("");
         System.out.println("YOUR HEALTH: " + player.getPlayerHealth() + "/100, YOUR STRENGTH: " + player.getPlayerStrength() );
         System.out.println("");
-        System.out.println("OLD SAGE: 'You are now fully healed.'");
+        System.out.println("Uzahr: 'You are now fully healed.'");
         System.out.println("");
         System.out.println("The old sage kicks up a chair and sits directly opposite you.");
         System.out.println("");
-        System.out.println("OLD SAGE: 'So. You thought you could gallivant with the king's daughter and expect there to be no price to pay?'");
+        System.out.println("Uzahr: 'So. You thought you could gallivant with the king's daughter and expect there to be no price to pay?'");
         System.out.println("");
-        System.out.println("OLD SAGE: 'Still, for a peasant you are quite the warrior. Killed six of the king's men. No small feat for a peasant.'");
+        System.out.println("Uzahr: 'Still, you are quite the warrior. Killed six of the king's men. No small feat for a peasant.'");
         System.out.println("");
-        System.out.println("The old sage stops talking. He seems deep in thought. You feel his eyes judging every inch of your being.");
+        System.out.println("Uzahr stops talking. He seems deep in thought. You feel his eyes judging every inch of your being.");
         System.out.println("");
-        System.out.println("OLD SAGE: 'I come to you, with an opportunity.'");
+        System.out.println("Uzahr: 'I come to you, with an opportunity.'");
         System.out.println("");
-        System.out.println("OLD SAGE: 'I will help you escape this prison. Come with me and live the life of a warrior until your debt is paid.'");
+        System.out.println("Uzahr: 'I will help you escape this prison. Come with me and live the life of a warrior until your debt is paid.'");
         System.out.println("");
-        System.out.println("OLD SAGE: 'It's either that or you spend the rest of your life being tortured for the simple crime of falling in love.'");
+        System.out.println("Uzahr: 'It's either that or you spend the rest of your life being tortured for the simple crime of falling in love.'");
         System.out.println("");
-        System.out.println("OLD SAGE: 'Who knows, one day you may accrue enough honor to wed the princess.'");
+        System.out.println("Uzahr: 'Who knows, one day you may accrue enough honor to wed the princess.'");
         System.out.println("");
-        System.out.println("OLD SAGE: 'What say you, " + player.getPlayerName() + "?");
+        System.out.println("Uzahr: 'What say you, " + player.getPlayerName() + "?");
         System.out.println("");
         System.out.println("[1] I don't want to. I'm a pacifist. I don't want to hurt anyone.");
         System.out.println("[2] I'll take my chances here you old codger. P*** off.");
@@ -165,21 +165,25 @@ public class Main {
         int responseQ3 = choice.nextInt();
         switch (responseQ3) {
             case 1:
-                System.out.println("OLD SAGE: 'Really!? 6 dead soldiers would disagree with you.'");
+                System.out.println("Uzahr: 'Really!? 6 dead soldiers would disagree with you.'");
                 System.out.println("");
-                System.out.println("OLD SAGE: 'You are gifted in combat. Use it. Seek your freedom.'");
+                System.out.println("Uzahr: 'You are gifted in combat. Use it. Seek your freedom. Find redemption for your crimes.'");
                 System.out.println("");
-                System.out.println("You decide to take the old sage up on his offer.");
+                System.out.println("...");
+                System.out.println("");
+                System.out.println("You decide to take Uzahr up on his offer.");
                 System.out.println("");
                 break;
             case 2:
-                System.out.println("OLD SAGE: 'So be it. It's your funeral. I come to you with gifts of ambrosia, and you elect to eat mud. Drown in your own stupidity.'");
+                System.out.println("Uzahr: 'So be it. It's your funeral. I come to you with gifts of ambrosia, and you elect to eat mud. Drown in your own stupidity.'");
                 System.out.println("");
-                System.out.println("The old sage brandishes his staff.");
+                System.out.println("Uzahr brandishes his staff.");
                 System.out.println("");
-                System.out.println("OLD SAGE: 'TELARIS!'");
+                System.out.println("Uzahr: 'TELARIS!'");
                 System.out.println("");
-                System.out.println("The old man disappears into a portal. It closes behind him. You have doomed yourself. ");
+                System.out.println("Uzahr disappears into a portal. It closes behind him.");
+                System.out.println("");
+                System.out.println("You have doomed yourself.");
                 System.out.println("");
                 System.out.println("18 HOURS LATER");
                 System.out.println("");
@@ -264,7 +268,7 @@ public class Main {
                 System.out.println("");
                 System.out.println("The executioner swings his axe over your head. You see your face reflected in the silver of the axe head as it catches the light. It looks tired.");
                 System.out.println("");
-                System.out.println("You think of the princess. Her gentle touch. The only pure thing in this malevolent world.");
+                System.out.println("You think of the princess. Her gentle touch. The only pure thing in this cruel world.");
                 System.out.println("");
                 System.out.println("");
                 player.setPlayerHealth(0);
@@ -272,13 +276,14 @@ public class Main {
                 System.exit(0);
                 break;
         }
-        System.out.println("OLD SAGE: 'Good. Follow me.' ");
+        System.out.println("Uzahr: 'Good. Follow me.' ");
         System.out.println("");
-        System.out.println("The old sage brandishes his staff and prepares to cast a spell.");
+        System.out.println("Uzahr brandishes his staff and prepares to cast a spell.");
         System.out.println("");
         System.out.println("OLD SAGE: 'TELARIS!'");
         System.out.println("");
-        System.out.println("A portal appears. The old sage steps in and you follow. You are now in a laboratory of some sort.");
+        System.out.println("A portal appears. Uzahr steps in and you follow. You are now in a laboratory of some sort.");
+        System.out.println("");
         System.out.println("The tables are littered with shelves full of test tubes, bunsen burners and flasks. It makes sense that the old sage also dabbles with alchemy.");
         System.out.println("\n" +
                 "                                                       .:\n" +
@@ -299,18 +304,19 @@ public class Main {
                 "                                                            \\ '._____.-\n" +
                 "                                                  grp        '._______.-");
         System.out.println("");
-        System.out.println("OLD SAGE: 'First order of business. Drink this. It will increase your strength. It's a serum I've invented.'");
+        System.out.println("Uzahr: 'First order of business. Drink this. It will increase your strength. It's a serum I've invented.'");
         System.out.println("");
         System.out.println("You drink the potion. You feel stronger.");
         System.out.println("");
         player.setPlayerStrength(50);
-        System.out.println("3YOUR STRENGTH: " + player.getPlayerStrength());
+        System.out.println("YOUR STRENGTH: " + player.getPlayerStrength());
         System.out.println("");
-        System.out.println("OLD SAGE: 'Good. Put this armor on.'");
+        System.out.println("Uzahr: 'Good. Now, put this armor on.'");
         System.out.println("");
-        System.out.println("You eye the armor. The plating is thick and the metalwork is astonishing. This old sage must have connections in high places.");
+        System.out.println("You eyeball the armor. The plating is thick and the metalwork is astonishing. This old sage must have connections in high places.");
+        System.out.println("You can see dry bloodstains on the inside of the armor.");
         System.out.println("");
-        System.out.println("You put the armor on.");
+        System.out.println("You try not to think about it and put the armor on.");
         System.out.println("");
         player.setPlayerArmorHealth(100);
         System.out.println("YOUR HEALTH: " + player.getPlayerHealth() + " YOUR ARMOR HEALTH: " + player.getPlayerArmorHealth());
@@ -334,39 +340,39 @@ public class Main {
                 "!     \\  \\  \\   \\                  /   /  /  /     !\n" +
                 ":      \\  \\  \\   \\                /   /  /  /      ");
         System.out.println("");
-        System.out.println("You look in the mirror. You look incredible. Just having the armor on makes you feel stronger.");
+        System.out.println("You look in the mirror. You look dangerous. Just having the armor on makes you feel stronger.");
         System.out.println("");
         int currentStrength = player.getPlayerStrength();
         player.setPlayerStrength((currentStrength + 25));
         System.out.println("YOUR STRENGTH: " + player.getPlayerStrength());
         System.out.println("");
-        System.out.println("OLD SAGE: '...'");
+        System.out.println("Uzahr: '...'");
         System.out.println("");
-        System.out.println("The old sage stares at you for a few seconds. Except, it seems as if he's staring past you.  Finally, he speaks.");
+        System.out.println("Uzahr stares at you for a few seconds. Except, it seems as if he's staring past you.  Finally, he speaks.");
         System.out.println("");
-        System.out.println("OLD SAGE: 'It fits you as well as it did Arthur.'");
+        System.out.println("Uzahr: 'It fits you as well as it did Arthur.'");
         System.out.println("");
-        System.out.println("OLD SAGE: 'My son was a fine warrior. But even he couldn't best the cruel dragon Falcor.'");
+        System.out.println("Uzahr: 'My son was a fine warrior. But even he couldn't best the cruel dragon Falcor.'");
         System.out.println("");
-        System.out.println("OLD SAGE: 'All he ever wanted was to make me proud.'");
+        System.out.println("Uzahr: 'All he ever wanted was to make me proud.'");
         System.out.println("");
         System.out.println("You sit in silence for a few seconds.");
         System.out.println("");
-        System.out.println("OLD SAGE: 'Come, " + player.getPlayerName() + ". It's time to give you your first quest.'");
-        System.out.println("The old sage picks up a scroll from one of the shelves. It's a map.");
+        System.out.println("Uzahr: 'Come, " + player.getPlayerName() + ". It's time to give you your first quest.'");
+        System.out.println("Uzahr picks up a scroll from one of the shelves. It's a map of the area.");
         System.out.println("   ___________\n" +
                 "           / |       | |\n" +
                 "        ,' ,'         \\/',_    __\n" +
                 "     ,'__/             |    ',|  \"'-,,,,,,,\n" +
-                "   ,/  _|',     XXXXX    |                |   \\\n" +
+                "   ,/  _|',     Greenrun   |         Arrowmoor   |   \\\n" +
                 "   |  |   |',           \\               |    \\\n" +
-                "   |__|   |  ',          ',             |     \\\n" +
+                "   |__|   |  ',    XXXXX      ',             |     \\\n" +
                 "  /       |     ',        ,_\"\"\"\"\"---'-_,'______\\\n" +
                 " /        |        ',,_-'\"    |        |        ',\n" +
                 "|_________|         |         /        |        / ',,'\"\"\"\"|\n" +
-                "|__  |        ,____/         |        _|       /    |___  /\n" +
+                "|__  | Moonguard        ,____/         |        _|       /    |___  /\n" +
                 "'\\___|      ,'_,'|_,-,_______|         |       /      , '/\n" +
-                "  \\,' _', _/  ,, ,',|        |          \\       |   '\" ,'\n" +
+                "  \\,' _', _/  ,, ,',|        |   Riverward       \\       |   '\" ,'\n" +
                 "   \\ / |_ ,  |  \\||||       ,' |      ,'|    _\"\"    |,'\n" +
                 "    ' ,'  ', |  ||||| __ ,'   _|_ ,'    |    |\"\"---/\n" +
                 "       ' ,\"\"\"','\"\"\"\"\"\" |     /           \\\"\"\"|    /\n" +
@@ -376,7 +382,7 @@ public class Main {
                 "                       \\--'            |      /\n" +
                 "                       |   \\__        _|__    |\n" +
                 "                       |      |__     |   ',,,|\n" +
-                "                       |         |____|   /   |\n" +
+                "                       |   Stonehorn      |____|/|\n" +
                 "                       /         _|    ,,'_   |\n" +
                 "                      |__________|___,'  ,,' /\n" +
                 "                       \\      ---'    \\,/  ,'\n" +
@@ -384,31 +390,31 @@ public class Main {
                 "                         |    |_,''      |/\n" +
                 "                         |    |       []_|\n" +
                 "                          \\___'        /\n" +
-                "                           \\       __,'\n" +
+                "                           \\ Snowport      __,'\n" +
                 "                            \\_____/        ");
-        System.out.println("OLD SAGE: 'I've marked where you have to go. Go west from here and you will reach the target's location.");
+        System.out.println("Uzahr: 'I've marked where you have to go. We are currently in Arrowmoor. Go west and you will reach the target's location in Greenrun.");
         System.out.println("");
-        System.out.println("OLD SAGE: 'Your task is to slay an Enraged Draugr. It has been terrorizing the local residents and there is a bounty on it's head.'");
+        System.out.println("Uzahr: 'Your task is to slay an Enraged Draugr. It has been terrorizing the local residents and there is a bounty on it's head.'");
         System.out.println("");
-        System.out.println("OLD SAGE: 'I also need you to retrieve it's horn. I require it for one of my experiments.'");
+        System.out.println("Uzahr: 'I also need you to retrieve it's horn. I require it for one of my experiments.'");
         System.out.println("");
-        System.out.println("OLD SAGE: 'In return, I will provide you with a place to stay while you pay your debt off to me. You will also receive a share of the reward for the bounty.'");
+        System.out.println("Uzahr: 'In return, I will provide you with a place to stay while you pay your debt off to me. You will also receive a share of the reward for the bounty.'");
         System.out.println("");
-        System.out.println("OLD SAGE: 'Take this blade. Judging by the bloody mess you left in the King's court, you already know how to use it well.");
+        System.out.println("Uzahr: 'Take this blade. Judging by the bloody mess you left in the King's court, you already know how to use it well.");
         System.out.println("");
-        System.out.println("The old sage hands you a sword. It is thinner than a typical soldier's blade but the durability seems strong.");
+        System.out.println("Uzahr hands you a sword. It is thinner than a typical soldier's blade but the durability seems strong.");
         System.out.println("");
         System.out.println(" __-----_________________{]__________________________________________________\n" +
                 "{&&&&&&&#%%&#%&%&%&%&%#%&|]__________________________________________________\\\n" +
                 "                         {]");
         System.out.println("");
-        System.out.println("Wielding this blade should make you strong enough to fight the Draugr.");
+        System.out.println("Uzahr: 'Wielding this blade should make you strong enough to fight the Draugr.'");
         System.out.println("");
         currentStrength = player.getPlayerStrength();
         player.setPlayerStrength(currentStrength += 50);
         System.out.println("");
         System.out.println("YOUR STRENGTH: " + player.getPlayerStrength());
-        System.out.println("OLD SAGE: 'Take these five healing potions as well.'");
+        System.out.println("Uzahr: 'Take these five healing potions as well.'");
         System.out.println("       ___\n" +
                 "       )_(                                            _\n" +
                 "       | |                                           [_ ]\n" +
@@ -425,10 +431,34 @@ public class Main {
         System.out.println("YOUR INVENTORY: ");
         System.out.println("Potions: " + inventory.getNoOfPotions());
         System.out.println("");
-        System.out.println("OLD SAGE: 'Now be on your way, " + player.getPlayerName() + ".'");
+        System.out.println("Uzahr: 'Any questions?'");
         System.out.println("");
-        System.out.println("You exit the room.");
+        System.out.println("[1] If you're such a powerful sage, why don't you do it?");
+        System.out.println("[2] Why don't you open up a portal to Greenrun for me?");
+        System.out.println("[3] Thank you for everything. I'll be back. ");
+        System.out.println("PLEASE SELECT A RESPONSE BY TYPING A NUMBER");
+        int responseQ4 = choice.nextInt();
+        switch (responseQ4) {
+            case 1:
+                System.out.println("Uzahr: 'I am old. I can not move fast. While I can cast deadly spells, I lack the physical prowess for battle'");
+                break;
+            case 2:
+                System.out.println("Uzahr: 'Opening portals is no minor feat. It drains a lot of my MP.'");
+                break;
+            case 3:
+                System.out.println("Uzahr: 'You are most welcome, " + player.getPlayerName() + ".'");
+                break;
+        }
         System.out.println("");
+        System.out.println("Uzahr: 'Now be on your way, " + player.getPlayerName() + ". May God be with you.'");
+        System.out.println("");
+        System.out.println("You exit the building.");
+        System.out.println("");
+        System.out.println("The sunlight blinds you and the cool autumn air fills your lungs. You take a moment to process things.");
+        System.out.println("");
+        System.out.println("After everything that transpired with Helena, You were not sure if you would taste freedom again.");
+        System.out.println("");
+        System.out.println("You eye the map and head west in pursuit of the Enraged Draugr.");
 
 
 
