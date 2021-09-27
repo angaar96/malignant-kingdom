@@ -2,6 +2,8 @@ package com.company;
 import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.Scanner;
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -130,12 +132,13 @@ public class Main {
         choice.nextLine();
         String playerName = choice.nextLine();
         System.out.println("Hello " + playerName + ". My name is Uzahr. I am a sage.");
+        System.out.println("");
         System.out.println("Uzahr: " + playerName + ", you are weak. Let me heal you. " );
         System.out.println("");
         System.out.println("He brandishes his walking stick. It's actually a magical staff in disguise.");
-        Player player = new Player(playerName, 100, 25, 0);
+        Player player = new Player(playerName, 100, 100,20, 0, 100+0);
         System.out.println("");
-        System.out.println("YOUR HEALTH: " + player.getPlayerHealth() + "/100, YOUR STRENGTH: " + player.getPlayerStrength() );
+        System.out.println("YOUR HEALTH: " + player.getHealth() + "/" + player.getMaxHealth() + "\nYOUR STRENGTH: " + player.getStrength() );
         System.out.println("");
         System.out.println("Uzahr: 'You are now fully healed.'");
         System.out.println("");
@@ -155,7 +158,7 @@ public class Main {
         System.out.println("");
         System.out.println("Uzahr: 'Who knows, one day you may accrue enough honor to wed the princess.'");
         System.out.println("");
-        System.out.println("Uzahr: 'What say you, " + player.getPlayerName() + "?");
+        System.out.println("Uzahr: 'What say you, " + player.getName() + "?");
         System.out.println("");
         System.out.println("[1] I don't want to. I'm a pacifist. I don't want to hurt anyone.");
         System.out.println("[2] I'll take my chances here you old codger. P*** off.");
@@ -264,14 +267,14 @@ public class Main {
                 System.out.println("The executioner tightens his grip on his axe and clenches his teeth. His eyes are full of sorrow and determination.");
                 System.out.println("");
                 System.out.println("EXECUTIONER: 'I hope you are all at peace in the Kingdom of Heaven.'");
-                System.out.println("EXECUTIONER: '" + player.getPlayerName() + ". I hope God does not forgive you. I hope you burn in hell.'");
+                System.out.println("EXECUTIONER: '" + player.getName() + ". I hope God does not forgive you. I hope you burn in hell.'");
                 System.out.println("");
                 System.out.println("The executioner swings his axe over your head. You see your face reflected in the silver of the axe head as it catches the light. It looks tired.");
                 System.out.println("");
                 System.out.println("You think of the princess. Her gentle touch. The only pure thing in this cruel world.");
                 System.out.println("");
                 System.out.println("");
-                player.setPlayerHealth(0);
+                player.setHealth(0);
                 System.out.println("YOU ARE EXECUTED FOR KILLING 6 OF THE KING'S MEN. YOU DID NOT SURVIVE THE MALIGNANT KINGDOM.");
                 System.exit(0);
                 break;
@@ -308,8 +311,8 @@ public class Main {
         System.out.println("");
         System.out.println("You drink the potion. You feel stronger.");
         System.out.println("");
-        player.setPlayerStrength(50);
-        System.out.println("YOUR STRENGTH: " + player.getPlayerStrength());
+        player.setStrength(30);
+        System.out.println("YOUR STRENGTH: " + player.getStrength());
         System.out.println("");
         System.out.println("Uzahr: 'Good. Now, put this armor on.'");
         System.out.println("");
@@ -318,8 +321,8 @@ public class Main {
         System.out.println("");
         System.out.println("You try not to think about it and put the armor on.");
         System.out.println("");
-        player.setPlayerArmorHealth(100);
-        System.out.println("YOUR HEALTH: " + player.getPlayerHealth() + " YOUR ARMOR HEALTH: " + player.getPlayerArmorHealth());
+        player.setArmorHealth(100);
+        System.out.println("YOUR HEALTH: " + player.getHealth() + "\nYOUR ARMOR HEALTH: " + player.getArmorHealth());
         System.out.println("");
         System.out.println("  _.--.    .--._\n" +
                 "                 .\"  .\"      \".  \".\n" +
@@ -342,9 +345,9 @@ public class Main {
         System.out.println("");
         System.out.println("You look in the mirror. You look dangerous. Just having the armor on makes you feel stronger.");
         System.out.println("");
-        int currentStrength = player.getPlayerStrength();
-        player.setPlayerStrength((currentStrength + 25));
-        System.out.println("YOUR STRENGTH: " + player.getPlayerStrength());
+        int currentStrength = player.getStrength();
+        player.setStrength((currentStrength + 5));
+        System.out.println("YOUR STRENGTH: " + player.getStrength());
         System.out.println("");
         System.out.println("Uzahr: '...'");
         System.out.println("");
@@ -358,7 +361,7 @@ public class Main {
         System.out.println("");
         System.out.println("You sit in silence for a few seconds.");
         System.out.println("");
-        System.out.println("Uzahr: 'Come, " + player.getPlayerName() + ". It's time to give you your first quest.'");
+        System.out.println("Uzahr: 'Come, " + player.getName() + ". It's time to give you your first quest.'");
         System.out.println("Uzahr picks up a scroll from one of the shelves. It's a map of the area.");
         System.out.println("   ___________\n" +
                 "           / |       | |\n" +
@@ -392,6 +395,7 @@ public class Main {
                 "                          \\___'        /\n" +
                 "                           \\ Snowport      __,'\n" +
                 "                            \\_____/        ");
+        System.out.println("");
         System.out.println("Uzahr: 'I've marked where you have to go. We are currently in Arrowmoor. Go west and you will reach the target's location in Greenrun.");
         System.out.println("");
         System.out.println("Uzahr: 'Your task is to slay an Enraged Draugr. It has been terrorizing the local residents and there is a bounty on it's head.'");
@@ -400,20 +404,41 @@ public class Main {
         System.out.println("");
         System.out.println("Uzahr: 'In return, I will provide you with a place to stay while you pay your debt off to me. You will also receive a share of the reward for the bounty.'");
         System.out.println("");
-        System.out.println("Uzahr: 'Take this blade. Judging by the bloody mess you left in the King's court, you already know how to use it well.");
+        System.out.println("Uzahr: 'Take that blade. Judging by the bloody mess you left in the King's court, you already know how to use it well.");
         System.out.println("");
-        System.out.println("Uzahr hands you a sword. It is thinner than a typical soldier's blade but the durability seems strong.");
+        System.out.println("             _,._\n" +
+                " .         ,'   ,`-.\n" +
+                "| \\       /     |\\  `.\n" +
+                "\\ \\      (  ,-,-` ). `-._ __\n" +
+                " \\ \\      \\|\\,'     `\\  /'  `\\\n" +
+                "  \\ \\      ` |, ,  /  \\ \\     \\\n" +
+                "   \\ \\         `,_/`, /\\,`-.__/`.\n" +
+                "    \\ \\            | ` /    /    `-._\n" +
+                "     \\\\\\           `-/'    /         `-.\n" +
+                "      \\\\`/ _______,-/_   /'             \\\n" +
+                "     ---'`|       |`  ),' `---.  ,       |\n" +
+                "      \\..-`--..___|_,/          /       /\n" +
+                "                 |    |`,-,...,/      ,'     \n" +
+                "                 \\    | |_|   /     ,' __  r-'',\n" +
+                "                  |___|/  |, /  __ /-''  `'`)  |  \n" +
+                "               _,-'   ||__\\ /,-' /     _,.--|  (\n" +
+                "            .-'       )   `(_   / _,.-'  ,-' _,/\n" +
+                "             `-------'       `--''       `'''");
+        System.out.println("");
+        System.out.println("You pick the blade up off the floor");
         System.out.println("");
         System.out.println(" __-----_________________{]__________________________________________________\n" +
                 "{&&&&&&&#%%&#%&%&%&%&%#%&|]__________________________________________________\\\n" +
                 "                         {]");
         System.out.println("");
-        System.out.println("Uzahr: 'Wielding this blade should make you strong enough to fight the Draugr.'");
+        System.out.println("It is thinner than a typical soldier's blade but the durability seems strong.");
         System.out.println("");
-        currentStrength = player.getPlayerStrength();
-        player.setPlayerStrength(currentStrength += 50);
+        System.out.println("Uzahr: 'Wielding this blade should give you the strength to fight the Draugr.'");
         System.out.println("");
-        System.out.println("YOUR STRENGTH: " + player.getPlayerStrength());
+        currentStrength = player.getStrength();
+        player.setStrength(currentStrength += 10);
+        System.out.println("");
+        System.out.println("YOUR STRENGTH: " + player.getStrength());
         System.out.println("Uzahr: 'Take these five healing potions as well.'");
         System.out.println("       ___\n" +
                 "       )_(                                            _\n" +
@@ -427,38 +452,178 @@ public class Main {
                 "    |;::-.._|   |;:.._|    |;:.._|     |;:.._|    |:._     |\n" +
                 "    `-.._..-'   `-...-'    `-...-'     `-...-'    `-.____.-'    ");
         System.out.println("");
-        Inventory inventory = new Inventory(5);
+        Inventory playerInventory = new Inventory(5);
         System.out.println("YOUR INVENTORY: ");
-        System.out.println("Potions: " + inventory.getNoOfPotions());
+        System.out.println("Potions: " + playerInventory.getNoOfPotions());
+        System.out.println("");
+        System.out.println("Your eyes dart over to the magic potions on the other side of the laboratory");
+        System.out.println("Uzahr: 'Tell you what. If you complete this quest, I'll teach you some magic.'");
         System.out.println("");
         System.out.println("Uzahr: 'Any questions?'");
         System.out.println("");
-        System.out.println("[1] If you're such a powerful sage, why don't you do it?");
-        System.out.println("[2] Why don't you open up a portal to Greenrun for me?");
-        System.out.println("[3] Thank you for everything. I'll be back. ");
+        System.out.println("[1] If you're such a powerful sage, why don't you do slay the Draugr?");
+        System.out.println("[2] Why don't you open up a portal to Greenrun for me? I don't want to travel all that way.");
+        System.out.println("[3] Thank you for everything. I'll be back with the horn. ");
         System.out.println("PLEASE SELECT A RESPONSE BY TYPING A NUMBER");
         int responseQ4 = choice.nextInt();
         switch (responseQ4) {
             case 1:
-                System.out.println("Uzahr: 'I am old. I can not move fast. While I can cast deadly spells, I lack the physical prowess for battle'");
+                System.out.println("");
+                System.out.println("Uzahr: 'I am old. I can not move fast. While I can cast deadly spells, I lack the physical prowess for battle.'");
                 break;
             case 2:
-                System.out.println("Uzahr: 'Opening portals is no minor feat. It drains a lot of my MP.'");
+                System.out.println("");
+                System.out.println("Uzahr: 'Opening portals is no minor feat. It drains a lot of my energy. I don't do it unless I need to. Say, when I need to break a criminal out of prison.'");
                 break;
             case 3:
-                System.out.println("Uzahr: 'You are most welcome, " + player.getPlayerName() + ".'");
+                System.out.println("");
+                System.out.println("Uzahr: 'You are most welcome, " + player.getName() + ".'");
                 break;
         }
         System.out.println("");
-        System.out.println("Uzahr: 'Now be on your way, " + player.getPlayerName() + ". May God be with you.'");
+        System.out.println("Uzahr: 'Now be on your way, " + player.getName() + ". You may take my horse, Argo, with you. May God be with you.'");
+        System.out.println("You shake Uzahr's hand. You are very grateful to him. This is the beginning of a beautiful friendship.");
         System.out.println("");
         System.out.println("You exit the building.");
         System.out.println("");
         System.out.println("The sunlight blinds you and the cool autumn air fills your lungs. You take a moment to process things.");
         System.out.println("");
-        System.out.println("After everything that transpired with Helena, You were not sure if you would taste freedom again.");
+        System.out.println("After everything that transpired with Helena, You were not sure if you would ever taste freedom again.");
         System.out.println("");
-        System.out.println("You eye the map and head west in pursuit of the Enraged Draugr.");
+        System.out.println("                              |\\    /|\n" +
+                "                              ___| \\,,/_/\n" +
+                "                           ---__/ \\/    \\\n" +
+                "                          __--/     (D)  \\\n" +
+                "                          _ -/    (_      \\\n" +
+                "                         // /       \\_ /  -\\\n" +
+                "   __-------_____--___--/           / \\_ O o)\n" +
+                "  /                                 /   \\__/\n" +
+                " /                                 /\n" +
+                "||          )                   \\_/\\\n" +
+                "||         /              _      /  |\n" +
+                "| |      /--______      ___\\    /\\  :\n" +
+                "| /   __-  - _/   ------    |  |   \\ \\\n" +
+                " |   -  -   /                | |     \\ )\n" +
+                " |  |   -  |                 | )     | |\n" +
+                "  | |    | |                 | |    | |\n" +
+                "  | |    < |                 | |   |_/\n" +
+                "  < |    /__\\                <  \\\n" +
+                "  /__\\                       /___\\");
+        System.out.println("You pet Argo. He lets out a whinny and looks at you lovingly. He seems friendly.");
+        System.out.println("");
+        System.out.println("Filled with determination, you mount Argo and head west in pursuit of the Enraged Draugr.");
+        System.out.println("");
+        System.out.println("6 HOURS LATER");
+        System.out.println("");
+        System.out.println("It is getting dark. You are close to your destination. You decide to stop, rest and continue your journey tomorrow.");
+        System.out.println("Some time has passed. You are hungry. You feel weaker.");
+        int currentHealth = player.getHealth();
+        player.setHealth(currentHealth - 20);
+        System.out.println("YOUR HEALTH : " + player.getHealth() + "/100");
+        System.out.println("");
+        System.out.println("You should probably replenish your health for the battle tomorrow. You spot a farm near where you have built your campsite.");
+        System.out.println("[1] Head to the farm to ask for a meal.");
+        System.out.println("[2] Take one of the potions Uzahr gave you. You may need it in battle but you are hungry now. It will not taste good but your hunger will be satiated.");
+        System.out.println("[3] Go to sleep. You can eat after you've slayed the Draugr. Stop being a coward. You are a knight now.");
+        System.out.println("[4] Steal a chicken from the farm and cook it. ");
+        int responseQ5 = choice.nextInt();
+        switch (responseQ5) {
+            case 1:
+                System.out.println("");
+                System.out.println("You approach the farm and tie Argo to the horse post.");
+                System.out.println("");
+                System.out.println("You walk to the door. You hear screaming and shouting inside.");
+                System.out.println("");
+                System.out.println("Unknown Voice: 'SHE IS MINE. I SAID SHE IS MINE, SO SHE IS MINE TO DO WITH AS I PLEASE! THESE ARE MY LANDS!'");
+                System.out.println("");
+                System.out.println("Unknown Voice: 'What are you going to do with that knife? You know how many people I've killed for nary a penny? Do not be foolish, girl.'");
+                System.out.println("");
+                System.out.println("Unknown Voice: 'AHH!'");
+                System.out.println("");
+                System.out.println("Unknown Voice: 'STUPID B****. YOU'LL PAY FOR THAT!'");
+                System.out.println("");
+                System.out.println("You burst through the door. There is a family on one side while a crazed man is on the other.");
+                System.out.println("");
+                System.out.println("The crazed ruffian who is attacking the girl stops and stares at you. He is holding a dagger. ");
+                System.out.println("");
+                System.out.println("            _____    ____\n" +
+                        "             .#########.#######..\n" +
+                        "          .#######################.\n" +
+                        "        .############################.\n" +
+                        "       .################################.\n" +
+                        "      .#########,##,#####################.\n" +
+                        "     .#########-#,'########## ############.\n" +
+                        "    .######'#-##' # ##'### #. `####:#######.\n" +
+                        "    #####:'# #'###,##' # # +#. `###:':######\n" +
+                        "   .####,'###,##  ###  # # #`#. -####`######.\n" +
+                        "  .####+.' ,'#  ##' #   # # #`#`.`#####::####\n" +
+                        "  ####'    #  '##'  #   #_'# #.## `#######;##\n" +
+                        "  #:##'      '       #   # ``..__# `#######:#\n" +
+                        "  #:##'  .#######s.   #.  .s######.\\`#####:##\n" +
+                        "  #:##   .\"______\"\"'    '\"\"_____\"\". `.#####:#\n" +
+                        " .#:##   ><'(##)'> )    ( <'(##)`><   `####;#\n" +
+                        " ##:##  , , -==-' '.    .` `-==- . \\  ######'\n" +
+                        " #|-'| / /      ,  :    : ,       \\ ` :####:'\n" +
+                        " :#  |: '  '   /  .     .  .  `    `  |`####\n" +
+                        " #|  :|   /   '  '       `  \\   . ,   :  #:# \n" +
+                        " #L. | | ,  /   `.-._ _.-.'   .  \\ \\  : ) J##\n" +
+                        "###\\ `  /  '                   \\  : : |  /##\n" +
+                        " ## #|.:: '       _    _        ` | | |'####\n" +
+                        " #####|\\  |  (.-'.__`-'__.`-.)   :| ' ######\n" +
+                        " ######\\:      `-...___..-' '     :: /######\n" +
+                        " #######\\``.                   ,'|  /#######\n" +
+                        ".# ######\\  \\       ___       / /' /#######\n" +
+                        "# #'#####|\\  \\    -     -    /  ,'|### #. #.\n" +
+                        "`#  #####| '-.`             ' ,-'  |### #  #\n" +
+                        "    #' `#|    '._         ,.-'     #`#`#.\n" +
+                        "         |       .'------' :       |#   #\n" +
+                        "         |       :         :       |\n" +
+                        "         |       :         :       |\n" +
+                        "                 :         :          ");
+                System.out.println("His eyes have a delirious look to them. You suspect he succumbed to a life of savagery and madness long ago. ");
+                System.out.println("");
+                System.out.println("You brandish your sword and prepare to do battle with this crazed ruffian. He has a stab wound in his leg so he shouldn't be a challenge for someone like you.");
+                System.out.println("");
+                System.out.println("He lunges at you first with his dagger. ");
+                Ruffian ruffian = new Ruffian("Ruffian", 70,100,25,0, 70+0);
+                Random rand = new Random();
+
+                // Battle - need to fix this code . The while loop is wrong I think.
+                while (player.totalHealth > 0 || ruffian.totalHealth >0) {
+                    float ruffianChanceOfHit = rand.nextInt(2); // 2 = upperbound. rand generates numbers from 0 to upperbound-1. so this will generate a number between 0 and 1.
+                    if (ruffianChanceOfHit >= 0.5) {
+                        int currentPlayerTotalHealth = player.getTotalHealth(); // includes armor and actual health.
+                        int damageToPlayer = currentPlayerTotalHealth - ruffian.strength;
+                        player.setTotalHealth(damageToPlayer);
+                        System.out.println("The Ruffian has successfully hit you.");
+                        System.out.println("You take " + damageToPlayer + " points of damage.");
+                        System.out.println("YOUR TOTAL HEALTH: " + player.totalHealth);
+                    }
+                    float playerChanceOfHit = rand.nextInt(2); // 2 = upperbound. rand generates numbers from 0 to upperbound-1. so this will generate a number between 0 and 1.
+                    if (playerChanceOfHit >= 0.5) {
+                        int currentRuffianTotalHealth = ruffian.getTotalHealth(); // includes armor and actual health.
+                        int damageToRuffian = currentRuffianTotalHealth - player.strength;
+                        player.setTotalHealth(damageToRuffian);
+                        System.out.println("You stab the ruffian with your blade");
+                        System.out.println("He takes " + damageToRuffian + " points of damage.");
+                        System.out.println("RUFFIAN TOTAL HEALTH: " + player.totalHealth);
+                    };
+                }
+
+
+
+                System.out.println("You brandish your sword and prepare to do battle with this crazed ruffian.");
+
+
+
+
+
+
+        }
+
+
+
+
 
 
 

@@ -10,8 +10,8 @@ public class Inventory {
     public int getNoOfPotions() {
         return noOfPotions;
     }
-
     public void setNoOfPotions(int noOfPotions) {
         this.noOfPotions = noOfPotions;
     }
+
 }
