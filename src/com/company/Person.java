@@ -8,14 +8,11 @@ public class Person {
     protected int armorHealth;
     protected int totalHealth;
 
-    public Person(String name, int health, int maxHealth, int strength, int armorHealth, int totalHealth) {
+    public Person(String name, int health, int maxHealth, int strength) {
         this.name = name;
         this.health = health;
         this.maxHealth = maxHealth;
         this.strength = strength;
-        this.armorHealth = armorHealth;
-        this.totalHealth = armorHealth + health;
-
     }
 
     public void setName(String name) {
@@ -44,19 +41,5 @@ public class Person {
     }
     public void setStrength(int strength) {
         this.strength = strength;
-    }
-
-    public int getArmorHealth() {
-        return this.armorHealth;
-    }
-    public void setArmorHealth(int armorHealth) {
-        this.armorHealth = armorHealth;
-    }
-
-    public int getTotalHealth() {
-        return this.totalHealth;
-    }
-    public void setTotalHealth(int totalHealth) {
-        this.totalHealth = totalHealth;
     }
 }

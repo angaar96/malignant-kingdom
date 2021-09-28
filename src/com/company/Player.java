@@ -2,13 +2,17 @@ package com.company;
 
 
 class Player extends Person {
-//    private String description;
-//    private String[] guests;
+    private int rageLevel;
 
-    public Player(String name, int health, int maxHealth, int strength, int armorHealth, int totalHealth) {
-        super(name, health, maxHealth, strength, armorHealth, totalHealth);
-//        this.description = description;
-//        this.guests = guests;
+    public Player(String name, int health, int maxHealth, int strength, int rageLevel) {
+        super(name, health, maxHealth, strength);
+        this.rageLevel = rageLevel;
+    }
+    public void setRageLevel(int rageLevel) {
+        this.rageLevel = rageLevel;
+    }
+    public int getRageLevel() {
+        return this.rageLevel;
     }
 
 }
