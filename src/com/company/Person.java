@@ -5,8 +5,6 @@ public class Person {
     protected int health;
     protected int maxHealth;
     protected int strength;
-    protected int armorHealth;
-    protected int totalHealth;
 
     public Person(String name, int health, int maxHealth, int strength) {
         this.name = name;

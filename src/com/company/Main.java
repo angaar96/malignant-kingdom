@@ -1,8 +1,6 @@
 package com.company;
-import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.Scanner;
-import java.util.Random;
 
 public class Main {
 
@@ -321,10 +319,8 @@ public class Main {
         System.out.println("");
         System.out.println("You try not to think about it and put the armor on.");
         System.out.println("");
-        int currentPlayerHealth = player.getHealth();
-        player.setHealth(currentPlayerHealth + 100);
-        int currentMaxPlayerHealth = player.getMaxHealth();
-        player.setMaxHealth(currentMaxPlayerHealth+100);
+        player.setHealth(player.getHealth() + 100);
+        player.setMaxHealth(player.getMaxHealth()+100);
         System.out.println("YOUR HEALTH IS NOW: " + player.getHealth() + "/" + player.getMaxHealth());
         System.out.println("");
         System.out.println("  _.--.    .--._\n" +
@@ -348,8 +344,7 @@ public class Main {
         System.out.println("");
         System.out.println("You look in the mirror. You look dangerous. Just having the armor on makes you feel stronger.");
         System.out.println("");
-        int currentStrength = player.getStrength();
-        player.setStrength((currentStrength + 5));
+        player.setStrength(player.getStrength() + 5);
         System.out.println("YOUR STRENGTH: " + player.getStrength());
         System.out.println("");
         System.out.println("Uzahr: '...'");
@@ -438,8 +433,7 @@ public class Main {
         System.out.println("");
         System.out.println("Uzahr: 'Wielding this blade should give you the strength to fight the Draugr.'");
         System.out.println("");
-        currentStrength = player.getStrength();
-        player.setStrength(currentStrength += 10);
+        player.setStrength(player.getStrength() + 10);
         System.out.println("");
         System.out.println("YOUR STRENGTH: " + player.getStrength());
         System.out.println("Uzahr: 'Take these five healing potions as well.'");
@@ -522,8 +516,7 @@ public class Main {
         System.out.println("It is getting dark. You are close to your destination. You decide to stop, rest and continue your journey tomorrow.");
         System.out.println("");
         System.out.println("Some time has passed. You are hungry. You feel weaker.");
-        int currentHealth = player.getHealth();
-        player.setHealth(currentHealth - 20);
+        player.setHealth(player.getHealth() - 20);
         System.out.println("YOUR HEALTH : " + player.getHealth() + "/" + player.getMaxHealth());
         System.out.println("");
         System.out.println("You should probably replenish your health for the battle tomorrow. You spot a farm near where you have built your campsite.");
@@ -549,7 +542,7 @@ public class Main {
         }
 
         System.out.println("");
-        System.out.println("Unknown Voice: 'SHE IS MINE. SHE IS MINE TO DO WITH AS I PLEASE!!'");
+        System.out.println("Unknown Voice: 'I killed that boy so I could have you all to myself. You are mine.'");
         System.out.println("");
         System.out.println("Unknown Voice: 'What are you going to do with that knife? You know how many people I've killed for nary a penny? Do not be foolish, girl.'");
         System.out.println("");
@@ -600,133 +593,60 @@ public class Main {
         System.out.println("You brandish your sword and prepare to do battle with this crazed ruffian. He has a stab wound in his leg so he shouldn't be a challenge for someone like you.");
         System.out.println("");
         System.out.println("He lunges at you first with his dagger. ");
-        System.out.println("");
         Ruffian ruffian = new Ruffian("Ruffian", 170,200,25);
         Inventory ruffianInventory = new Inventory(2);
-        Random rand = new Random();
-        int playerStrengthBeforeBattle = player.getStrength();
+        int playerStrengthBeforeRuffianBattle = player.getStrength();
         // BEGIN FIRST BATTLE
-        while (ruffian.getHealth() > 0) {
-            // Ruffian Turn
-            // The Ruffian has a 40% chance of taking a potion if his health reaches below 20% of his maximum health (which is 40/200).
-            if (ruffian.getHealth() <= 40 && ruffianInventory.getNoOfPotions() > 0) {
-                float ruffianChanceOfTakingAPotion = rand.nextFloat();
-                if (ruffianChanceOfTakingAPotion <= 0.4 ) {
-                    int currentNumberOfRuffianPotions = ruffianInventory.getNoOfPotions();
-                    ruffianInventory.setNoOfPotions(currentNumberOfRuffianPotions - 1);
-                    int currentRuffianHealth = ruffian.getHealth();
-                    ruffian.setHealth(currentRuffianHealth+40);
-                    System.out.println("");
-                    System.out.println("The Ruffian has taken a potion and healed 40 points.");
-                    System.out.println("");
-                    System.out.println("RUFFIAN HEALTH: " + ruffian.getHealth() + "/" + ruffian.getMaxHealth());
-                }
-            } else {
-                float ruffianChanceOfHit = rand.nextFloat();
-                if (ruffianChanceOfHit >= 0.6) {
-                    currentPlayerHealth = player.getHealth();
-                    int damageToPlayer = ruffian.strength;
-                    player.setHealth(currentPlayerHealth - damageToPlayer);
-                    System.out.println("");
-                    System.out.println("The Ruffian has successfully hit you.");
-                    System.out.println("");
-                    System.out.println("You take " + damageToPlayer + " points of damage.");
-                    System.out.println("");
-                    System.out.println("YOUR HEALTH: " + player.health + "/" + player.getMaxHealth());
-                    System.out.println("");
-                    int currentPlayerRageLevel = player.getRageLevel();
-                    player.setRageLevel(currentPlayerRageLevel + 20);
-                    System.out.println("You gained 20 rage points.");
-                    System.out.println("");
-                    System.out.println("YOUR RAGE: " + player.getRageLevel());
-
-                    if (player.getHealth() < 0) {
-                        System.out.println("Oh No! The Ruffian killed you!");
-                        System.out.println("");
-                        System.out.println("YOU DID NOT SURVIVE THE MALIGNANT KINGDOM");
-                        System.exit(0);
-                    }
-                } else {
-                    System.out.println("");
-                    System.out.println("The ruffian missed!");
-                };
-            }
-
-            // Player Turn
-            System.out.println("What should you do?");
-            System.out.println("[1] Attack with your sword. 60% chance of a hit.");
-            System.out.println("[2] Taunt. 20% chance of strength increasing by 20 points");
-            System.out.println("[3] Use a potion. Heals 40 health points");
-            if (player.getRageLevel() > 100) {
-                System.out.println("[4] Use Blinding Rage (A devastating special attack which generates after every 5 times you get hit. It has an 80% chance of hitting. ");
-            }
-            int playerBattleChoice = choice.nextInt();
-            switch(playerBattleChoice) {
-                case 1:
-                    float playerChanceOfHit = rand.nextFloat();
-                    if (playerChanceOfHit >= 0.6) {
-                        int currentRuffianHealth = ruffian.getHealth(); // includes armor and actual health.
-                        int damageToRuffian = player.strength;
-                        ruffian.setHealth(currentRuffianHealth - damageToRuffian);
-                        System.out.println("You stab the ruffian with your blade");
-                        System.out.println("");
-                        System.out.println("He takes " + damageToRuffian + " points of damage.");
-                        System.out.println("");
-                        System.out.println("RUFFIAN HEALTH: " + ruffian.health);
-                    } else {
-                        System.out.println("You missed! The ruffian is a crafty bugger.");
-                    };
-                    break;
-                case 2:
-                    System.out.println("You taunt the ruffian.");
-                    System.out.println("");
-                    float chanceOfStrengthIncrease = rand.nextFloat();
-                    if (chanceOfStrengthIncrease <= 0.2) {
-                        int currentPlayerStrength = player.getStrength();
-                        player.setStrength(currentPlayerStrength+20);
-                        System.out.println("Your strength has increased by 20 points.");
-                        System.out.println("");
-                        System.out.println("YOUR STRENGTH: " + player.getStrength());
-                    } else {
-                        System.out.println("");
-                        System.out.println("Unfortunately, you don't feel any stronger.");
-                    }
-                    break;
-                case 3:
-                    int currentNoOfPlayerPotions = playerInventory.getNoOfPotions();
-                    playerInventory.setNoOfPotions(currentNoOfPlayerPotions - 1);
-                    currentPlayerHealth = player.getHealth();
-                    player.setHealth(currentPlayerHealth + 40);
-                    System.out.println("");
-                    System.out.println("You have used a potion and recovered 40 health points.");
-                    System.out.println("");
-                    System.out.println("You now have " + playerInventory.getNoOfPotions() + " potions left");
-                    System.out.println("");
-                    System.out.println("YOUR HEALTH: " + player.getHealth() + "/" + player.getMaxHealth());
-                case 4:
-                    if (player.getRageLevel() > 100) {
-                        int currentPlayerRageLevel = player.getRageLevel();
-                        player.setRageLevel(currentPlayerRageLevel - 100);
-                        float blindingRageChanceOfHit = rand.nextFloat();
-                        if (blindingRageChanceOfHit >= 0.2) {
-                            int currentRuffianHealth = ruffian.getHealth(); // includes armor and actual health.
-                            int damageToRuffian = 100;
-                            ruffian.setHealth(currentRuffianHealth - damageToRuffian);
-                            System.out.println("You stab the ruffian with your blade");
-                            System.out.println("He takes " + damageToRuffian + " points of damage.");
-                            System.out.println("RUFFIAN HEALTH: " + ruffian.health);
-                        } else {
-                            System.out.println("Oh no! After all that buildup, your Blinding Rage attack missed the Ruffian! Unlucky!" );
-                        }
-                    } else {
-                        System.out.println("Don't be naughty. You can't do Blinding Rage again so soon. Just for that, you miss a turn and lose your rage. Remember, greed is a grave sin.");
-                    }
-                    break;
-                }
-        }
+        RuffianBattle ruffianBattle = new RuffianBattle(ruffian, player, playerInventory, ruffianInventory);
+        ruffianBattle.runBattle();
         System.out.println("Well done, you've killed the Ruffian.");
-        player.setStrength(playerStrengthBeforeBattle);
-        System.out.println("YOUR STRENGTH HAS REVERTED BACK TO " + player.getStrength());
+        player.setStrength(playerStrengthBeforeRuffianBattle);
+        System.out.println("Taunting effects have worn off. Your strength has reverted back to " + player.getStrength());
+        System.out.println("");
+        System.out.println("The Ruffian lies on the floor clutching his stomach in pain. There is blood everywhere.");
+        System.out.println("");
+        System.out.println("Before you can say anything, the girl runs across and stabs the ruffian over and over in a mad frenzy.");
+        System.out.println("");
+        System.out.println("A man runs over and tries to pull her off. You assume it is her father. ");
+        System.out.println("");
+        System.out.println("Cecelia's Father: 'Enough. Cecelia, ENOUGH!'");
+        System.out.println("");
+        System.out.println("She continues stabbing.");
+        System.out.println("");
+        System.out.println("Cecelia's Father: 'It won't bring Jacob back.'");
+        System.out.println("");
+        System.out.println("She stops and sits in silence. On her face is a defeated expression. She won't recover from this ordeal for a long time.");
+        System.out.println("");
+        System.out.println("Everyone sits in shock for a moment.");
+        System.out.println("");
+        System.out.println("The ruffian may be dead but what they have lost is irreplaceable.");
+        System.out.println("");
+        System.out.println("You ponder about the lives of the men you took in the court.");
+        System.out.println("");
+        System.out.println("Who were you to take them from their sons and daughters? Their fathers and mothers? You ended up in that dungeon all the same. You extinguished their flames for nothing.");
+        System.out.println("");
+        System.out.println("Cecelia's Father: 'Brave knight, thank you for your service. This man has been hounding us for a year. Last month, he took the life of my son-in-law. You have erased a great scourge from this earth.'");
+        System.out.println("");
+        System.out.println("Cecelia's Father: 'What brings you here? What is your name?'");
+        System.out.println("");
+        System.out.println("You tell him your name and the details of your quest. You learn that his name is Martin. His wife, Emilia treats your wounds. Some hours pass.");
+        System.out.println("");
+        System.out.println("Martin: '" + player.getName() + ", we are in your debt. Please, rest in the barn and join us for breakfast tomorrow before you go on your way.'" );
+        System.out.println("");
+        System.out.println("You take him up on his offer and bunk up in the barn.");
+        if (responseQ5 == 2) {
+            System.out.println("You feel guilty and struggle to sleep. You were dead set on robbing these people before you fought the ruffian. The moral struggle weakens you and your resolve. ");
+            player.setStrength(player.getStrength()-10);
+            System.out.println("YOUR STRENGTH HAS DECREASED BY 10 POINTS. YOUR CURRENT STRENGTH :" + player.getStrength());
+        };
+        System.out.println("You wake up in the morning and eat some food with the family. Then you set off on your journey once again.");
+        System.out.println("");
+        System.out.println("YOU ARE NOW FULLY HEALED.");
+        player.setHealth(player.getMaxHealth());
+        System.out.println("YOUR HEALTH: " + player.getHealth() +"/" + player.getMaxHealth());
+
+
+
 
 
 

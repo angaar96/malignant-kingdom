@@ -1,7 +1,7 @@
 package com.company;
 
 public class Inventory {
-    private int noOfPotions;
+    protected int noOfPotions;
 
     public Inventory(int noOfPotions) {
         this.noOfPotions = noOfPotions;

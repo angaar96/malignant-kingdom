@@ -2,7 +2,7 @@ package com.company;
 
 
 class Player extends Person {
-    private int rageLevel;
+    protected int rageLevel;
 
     public Player(String name, int health, int maxHealth, int strength, int rageLevel) {
         super(name, health, maxHealth, strength);
