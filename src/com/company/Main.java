@@ -1,5 +1,7 @@
 package com.company;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.util.Scanner;
 
 public class Main {
@@ -131,12 +133,12 @@ public class Main {
         String playerName = choice.nextLine();
         System.out.println("Hello " + playerName + ". My name is Uzahr. I am a sage.");
         System.out.println("");
-        System.out.println("Uzahr: " + playerName + ", you are weak. Let me heal you. " );
+        System.out.println("Uzahr: " + playerName + ", you are weak. Let me heal you. ");
         System.out.println("");
         System.out.println("He brandishes his walking stick. It's actually a magical staff in disguise.");
-        Player player = new Player(playerName, 100, 100,20, 0);
+        Player player = new Player(playerName, 100, 100, 20, 0);
         System.out.println("");
-        System.out.println("YOUR HEALTH: " + player.getHealth() + "/" + player.getMaxHealth() + "\nYOUR STRENGTH: " + player.getStrength() );
+        System.out.println("YOUR HEALTH: " + player.getHealth() + "/" + player.getMaxHealth() + "\nYOUR STRENGTH: " + player.getStrength());
         System.out.println("");
         System.out.println("Uzahr: 'You are now fully healed.'");
         System.out.println("");
@@ -315,12 +317,13 @@ public class Main {
         System.out.println("Uzahr: 'Good. Now, put this armor on.'");
         System.out.println("");
         System.out.println("You eyeball the armor. The plating is thick and the metalwork is astonishing. This old sage must have connections in high places.");
+        System.out.println("");
         System.out.println("You can see dry bloodstains on the inside of the armor.");
         System.out.println("");
         System.out.println("You try not to think about it and put the armor on.");
         System.out.println("");
         player.setHealth(player.getHealth() + 100);
-        player.setMaxHealth(player.getMaxHealth()+100);
+        player.setMaxHealth(player.getMaxHealth() + 100);
         System.out.println("YOUR HEALTH IS NOW: " + player.getHealth() + "/" + player.getMaxHealth());
         System.out.println("");
         System.out.println("  _.--.    .--._\n" +
@@ -449,13 +452,17 @@ public class Main {
                 "    |;::-.._|   |;:.._|    |;:.._|     |;:.._|    |:._     |\n" +
                 "    `-.._..-'   `-...-'    `-...-'     `-...-'    `-.____.-'    ");
         System.out.println("");
-        Inventory playerInventory = new Inventory(5);
+        Inventory playerInventory = new Inventory(5, 0);
         System.out.println("YOUR INVENTORY: ");
         System.out.println("Potions: " + playerInventory.getNoOfPotions());
         System.out.println("");
         System.out.println("Your eyes dart over to the magic potions on the other side of the laboratory");
         System.out.println("Uzahr: 'Tell you what. If you complete this quest, I'll teach you some magic.'");
         System.out.println("");
+        System.out.println("Uzahr: 'Here is some money. Please don't run off with it. I'm trusting you. ");
+        System.out.println("");
+        System.out.println("You got 100 rupees!");
+        playerInventory.setNoOfRupees(100);
         System.out.println("Uzahr: 'Any questions?'");
         System.out.println("");
         System.out.println("[1] If you're such a powerful sage, why don't you do slay the Draugr?");
@@ -593,17 +600,22 @@ public class Main {
         System.out.println("You brandish your sword and prepare to do battle with this crazed ruffian. He has a stab wound in his leg so he shouldn't be a challenge for someone like you.");
         System.out.println("");
         System.out.println("He lunges at you first with his dagger. ");
-        Ruffian ruffian = new Ruffian("Ruffian", 170,200,25);
-        Inventory ruffianInventory = new Inventory(2);
+        Ruffian ruffian = new Ruffian("Ruffian", 170, 200, 25);
+        Inventory ruffianInventory = new Inventory(2, 50);
         int playerStrengthBeforeRuffianBattle = player.getStrength();
-        // BEGIN FIRST BATTLE
+        // BEGIN RUFFIAN BATTLE
         RuffianBattle ruffianBattle = new RuffianBattle(ruffian, player, playerInventory, ruffianInventory);
         ruffianBattle.runBattle();
-        System.out.println("Well done, you've killed the Ruffian.");
+        System.out.println("Well done, you've defeated the Ruffian.");
         player.setStrength(playerStrengthBeforeRuffianBattle);
         System.out.println("Taunting effects have worn off. Your strength has reverted back to " + player.getStrength());
         System.out.println("");
-        System.out.println("The Ruffian lies on the floor clutching his stomach in pain. There is blood everywhere.");
+        playerInventory.setNoOfRupees(playerInventory.getNoOfRupees() + ruffianInventory.getNoOfRupees());
+        System.out.println("You picked up " + ruffianInventory.getNoOfRupees() + " rupees from the Ruffian");
+        System.out.println("");
+        System.out.println("YOUR WALLET: " + playerInventory.getNoOfRupees() + " RUPEES");
+        System.out.println("");
+        System.out.println("The Ruffian lies on the floor clutching his stomach in pain. There is blood everywhere. He will be dead soon.");
         System.out.println("");
         System.out.println("Before you can say anything, the girl runs across and stabs the ruffian over and over in a mad frenzy.");
         System.out.println("");
@@ -613,7 +625,7 @@ public class Main {
         System.out.println("");
         System.out.println("She continues stabbing.");
         System.out.println("");
-        System.out.println("Cecelia's Father: 'It won't bring Jacob back.'");
+        System.out.println("Cecelia's Father: 'Cecelia. It won't bring Jacob back.'");
         System.out.println("");
         System.out.println("She stops and sits in silence. On her face is a defeated expression. She won't recover from this ordeal for a long time.");
         System.out.println("");
@@ -631,35 +643,308 @@ public class Main {
         System.out.println("");
         System.out.println("You tell him your name and the details of your quest. You learn that his name is Martin. His wife, Emilia treats your wounds. Some hours pass.");
         System.out.println("");
-        System.out.println("Martin: '" + player.getName() + ", we are in your debt. Please, rest in the barn and join us for breakfast tomorrow before you go on your way.'" );
+        System.out.println("Martin: '" + player.getName() + ", we are in your debt. Please, rest in the barn and join us for breakfast tomorrow before you go on your way.'");
         System.out.println("");
         System.out.println("You take him up on his offer and bunk up in the barn.");
+        System.out.println("");
         if (responseQ5 == 2) {
             System.out.println("You feel guilty and struggle to sleep. You were dead set on robbing these people before you fought the ruffian. The moral struggle weakens you and your resolve. ");
-            player.setStrength(player.getStrength()-10);
+            player.setStrength(player.getStrength() - 10);
+            System.out.println("");
             System.out.println("YOUR STRENGTH HAS DECREASED BY 10 POINTS. YOUR CURRENT STRENGTH :" + player.getStrength());
-        };
-        System.out.println("You wake up in the morning and eat some food with the family. Then you set off on your journey once again.");
+        }
+        ;
+        System.out.println("You wake up in the morning and eat some food with the family.");
+        System.out.println("");
+        System.out.println("       __                        @@;,\n" +
+                "              (  ;          ?           :  );\n" +
+                "             _| |_  |  |   ||  |  |     _| |_\n" +
+                "            |  \\  \\  \\/    ||   \\/ ___ /  /  |\n" +
+                "          __|   |\\ __||____||___||______/|   |\n" +
+                "          |||   | |_______    _________| |   |||\n" +
+                "          |||   |____     |   |      ____|   |||      \n" +
+                "          \\ \\______  )    |   |     /  ______/ /\n" +
+                "           ||    | | |    |   |    /___|     ||  \n" +
+                "           ||    | | |_  /| | |\\   _| ||     ||\n" +
+                "           ||    | \\__, / | | |  \\<__/ |     ||");
+        System.out.println("");
+        System.out.println("The family's kindness and hospitality increases your maximum vitality.");
+        System.out.println("");
+        System.out.println("Then you mount Argo and set off on your journey once again.");
+        System.out.println("");
+        player.setMaxHealth(280);
+        player.setHealth(player.getMaxHealth());
+        System.out.println("YOUR HEALTH: " + player.getHealth() + "/" + player.getMaxHealth());
         System.out.println("");
         System.out.println("YOU ARE NOW FULLY HEALED.");
-        player.setHealth(player.getMaxHealth());
-        System.out.println("YOUR HEALTH: " + player.getHealth() +"/" + player.getMaxHealth());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        System.out.println("");
+        System.out.println("3 HOURS LATER");
+        System.out.println("");
+        System.out.println("You are approaching the Draugr's location. However, you are currently immersed in some fog.");
+        System.out.println("");
+        System.out.println("You sense this is a trap.");
+        System.out.println("");
+        System.out.println("Which direction do you go ? ");
+        System.out.println("");
+        System.out.println("PLEASE SELECT A RESPONSE");
+        System.out.println("");
+        System.out.println("[1] Go left towards the graveyard.");
+        System.out.println("[2] Go right towards the church.");
+        System.out.println("");
+        int responseQ6 = choice.nextInt();
+        switch (responseQ6) {
+            case 1:
+                System.out.println("You see him! The Draugr is right there! ");
+                System.out.println("");
+                break;
+            case 2:
+                System.out.println("You gallop in the fog.");
+                System.out.println("");
+                System.out.println("DRAUGR: ");
+                System.out.println("");
+                System.out.println("I");
+                System.out.println("");
+                System.out.println("C");
+                System.out.println("");
+                System.out.println("A");
+                System.out.println("");
+                System.out.println("N");
+                System.out.println("");
+                System.out.println("S");
+                System.out.println("");
+                System.out.println("E");
+                System.out.println("");
+                System.out.println("E");
+                System.out.println("");
+                System.out.println("Y");
+                System.out.println("");
+                System.out.println("O");
+                System.out.println("");
+                System.out.println("U");
+                System.out.println("");
+                System.out.println("The Draugr attacks you by surprise from behind!");
+                System.out.println("");
+                System.out.println("You have taken 50 points of damage!");
+                System.out.println("");
+                System.out.println("You fall off the horse and try to run away.");
+                System.out.println("");
+                player.setHealth(player.getHealth() - 50);
+                System.out.println("YOUR HEALTH: " + player.getHealth() + "/" + player.getMaxHealth());
+                System.out.println("");
+                break;
         }
+        System.out.println("                              _.--\"\"-._\n" +
+                "  .                         .\"         \".\n" +
+                " / \\    ,^.         /(     Y             |      )\\\n" +
+                "/   `---. |--'\\    (  \\__..'--   -   -- -'\"\"-.-'  )\n" +
+                "|        :|    `>   '.     l_..-------.._l      .'\n" +
+                "|      __l;__ .'      \"-.__.||_.-'v'-._||`\"----\"\n" +
+                " \\  .-' | |  `              l._       _.'\n" +
+                "  \\/    | |                   l`^^'^^'j\n" +
+                "        | |                _   \\_____/     _\n" +
+                "        j |               l `--__)-'(__.--' |\n" +
+                "        | |               | /`---``-----'\"1 |  ,-----.\n" +
+                "        | |               )/  `--' '---'   \\'-'  ___  `-.\n" +
+                "        | |              //  `-'  '`----'  /  ,-'   I`.  \\\n" +
+                "      _ L |_            //  `-.-.'`-----' /  /  |   |  `. \\\n" +
+                "     '._' / \\         _/(   `/   )- ---' ;  /__.J   L.__.\\ :\n" +
+                "      `._;/7(-.......'  /        ) (     |  |            | |\n" +
+                "      `._;l _'--------_/        )-'/     :  |___.    _._./ ;\n" +
+                "        | |                 .__ )-'\\  __  \\  \\  I   1   / /\n" +
+                "        `-'                /   `-\\-(-'   \\ \\  `.|   | ,' /\n" +
+                "                           \\__  `-'    __/  `-. `---'',-'\n" +
+                "                              )-._.-- (        `-----'\n" +
+                "                             )(  l\\ o ('..-.\n" +
+                "                       _..--' _'-' '--'.-. |\n" +
+                "                __,,-'' _,,-''            \\ \\\n" +
+                "               f'. _,,-'                   \\ \\\n" +
+                "              ()--  |                       \\ \\\n" +
+                "                \\.  |                       /  \\\n" +
+                "                  \\ \\                      |._  |\n" +
+                "                   \\ \\                     |  ()|\n" +
+                "                    \\ \\                     \\  /\n" +
+                "                     ) `-.                   | |\n" +
+                "                    // .__)                  | |\n" +
+                "                 _.//7'                      | |\n" +
+                "               '---'                         j_| `\n" +
+                "                                            (| |\n" +
+                "                                             |  \\\n" +
+                "                                             |lllj\n" +
+                "                                             |||||  ");
+        Draugr draugr = new Draugr("Draugr", 350, 350, 40);
+        Inventory draugrInventory = new Inventory(4, 500);
+        player.setRageLevel(0);
+        int playerStrengthBeforeDraugrBattle = player.getStrength();
+        // BEGIN DRAUGR BATTLE
+        DraugrBattle draugrBattle = new DraugrBattle(draugr, player, playerInventory, draugrInventory);
+        draugrBattle.runBattle();
+        System.out.println("Well done, you've defeated the Draugr and fulfilled your promise to Uzahr.");
+        System.out.println("");
+        System.out.println("You drive your blade through its head and extract the horn for Uzahr.");
+        System.out.println("");
+        System.out.println("                       ,--.\n" +
+                "                          {    }\n" +
+                "                          K,   }\n" +
+                "                         /  `Y`\n" +
+                "                    _   /   /\n" +
+                "                   {_'-K.__/\n" +
+                "                     `/-.__L._\n" +
+                "                     /  ' /`\\_}\n" +
+                "                    /  ' /     \n" +
+                "            ____   /  ' /\n" +
+                "     ,-'~~~~    ~~/  ' /_\n" +
+                "   ,'             ``~~~%%',\n" +
+                "  (                     %  Y\n" +
+                " {                      %% I\n" +
+                "{      -                 %  `.\n" +
+                "|       ',                %  )\n" +
+                "|        |   ,..__      __. Y\n" +
+                "|    .,_./  Y ' / ^Y   J   )|\n" +
+                "\\           |' /   |   |   ||\n" +
+                " \\          L_/    . _ (_,.'(\n" +
+                "  \\,   ,      ^^\"\"' / |      )\n" +
+                "    \\_  \\          /,L]     /\n" +
+                "      '-_`-,       ` `   ./`\n" +
+                "         `-(_            )\n" +
+                "             ^^\\..___,.--`");
+        System.out.println("");
+        player.setStrength(playerStrengthBeforeDraugrBattle);
+        System.out.println("Taunting effects have worn off. Your strength has reverted back to " + player.getStrength());
+        System.out.println("");
+        playerInventory.setNoOfRupees(playerInventory.getNoOfRupees() + draugrInventory.getNoOfRupees());
+        System.out.println("You picked up " + draugrInventory.getNoOfRupees() + " rupees from the Draugr");
+        System.out.println("");
+        System.out.println("YOUR WALLET: " + playerInventory.getNoOfRupees() + " RUPEES");
+        System.out.println("");
+        System.out.println("You spend some time looking for Argo. He was hiding a few meters away. You mount him and head back to Arrowmoor to Uzahr's laboratory.");
+        System.out.println("");
+        System.out.println("7 HOURS LATER");
+        System.out.println("");
+        System.out.println("It is getting dark. You pass through a town with an Inn. You decide to shack up here for a night.");
+        System.out.println("");
+        System.out.println("You see an old woman sitting against the wall of the inn. She looks up at you. She looks sickly and it appears she has not eaten in a while.");
+        System.out.println("OLD WOMAN: 'Please, could you spare me some change, brave knight?'");
+        System.out.println("");
+        System.out.println("You have " + playerInventory.getNoOfRupees() + " in your wallet.");
+        System.out.println("");
+        System.out.println("PLEASE CHOOSE A RESPONSE: ");
+        System.out.println("[1] You want her to stop bothering you and you don't want to waste your hard earned money. Give her 10 rupees. ");
+        System.out.println("[2] You want to help. Give her 50 rupees.");
+        System.out.println("[3] She's fallen on hard times. It is the duty of the privileged to help those who are suffering. Give her 100 rupees.");
+        System.out.println("[4] Give her nothing. There are no free handouts in life. She is homeless for a reason. She deserves to be this way.");
+        System.out.println("[5] **** off you old hag. I don't give a **** about your situation. Go die for all I care.");
+        System.out.println("PLEASE SELECT A RESPONSE BY ENTERING A NUMBER: ");
+        int responseQ7 = choice.nextInt();
+        switch (responseQ7) {
+            case 1:
+                System.out.println("");
+                System.out.println("OLD WOMAN: 'Oh. You can't spare any more? Thank you all the same, I guess...");
+                System.out.println("You sleep in the inn and embark to Arrowmoor in the morning.");
+                break;
+            case 2:
+                System.out.println("");
+                System.out.println("OLD WOMAN: 'Thank you, brave knight. I didn't know what I was going to do. Now I can eat for a while while I figure things out.");
+                System.out.println("");
+                System.out.println("The woman's response empowers you.");
+                System.out.println("");
+                player.setStrength(player.getStrength() + 10);
+                System.out.println("Your strength has increased by 10 points to " + player.getStrength());
+                System.out.println("");
+                System.out.println("You sleep in the inn and embark to Arrowmoor in the morning. It costs you 30 rupees and your wounds are healed.");
+                player.setHealth(player.getMaxHealth());
+                playerInventory.setNoOfRupees(playerInventory.getNoOfRupees() - 30);
+                break;
+            case 3:
+                System.out.println("");
+                System.out.println("The old woman starts jumping up and down with the 100 rupees in your hand");
+                System.out.println("");
+                System.out.println("OLD WOMAN: GOD BLESS YOU MY SON! MAY GOD BLESS YOU AND YOUR FAMILY WITH RICHES AND PROSPERITY!!! I'LL PRAY FOR YOUR GOOD HEALTH!!!");
+                System.out.println("");
+                System.out.println("The woman's excited response amuses you and reaffirms your moral stance. You love helping others.");
+                player.setStrength(player.getStrength() + 20);
+                System.out.println("Your strength has increased by 20 points to " + player.getStrength());
+                System.out.println("");
+                player.setMaxHealth(player.getMaxHealth() + 30);
+                System.out.println("Your maximum health has increased by 30 points to " + player.getMaxHealth());
+                System.out.println("");
+                System.out.println("You sleep in the inn and embark to Arrowmoor in the morning. It costs you 30 rupees and your wounds are healed.");
+                player.setHealth(player.getMaxHealth());
+                playerInventory.setNoOfRupees(playerInventory.getNoOfRupees() - 30);
+                break;
+            case 4:
+                System.out.println("");
+                System.out.println("OLD WOMAN: 'Nobody ever helped you? Showed you kindness in moments of pain? Have a heart my son. We're only here for a short time.'");
+                System.out.println("");
+                System.out.println("OLD WOMAN: 'When you are face to face with your maker, what will you say to him?");
+                System.out.println("");
+                System.out.println("You feel bad for being heartless. You would do better to show more compassion. Uzahr gave you 100 rupees without a thought.");
+                System.out.println("");
+                System.out.println("Your toxicity towards the woman infects your psyche. You feel like less of a man.");
+                player.setStrength(player.getStrength() - 20);
+                System.out.println("Your strength has decreased by 20 points to " + player.getStrength());
+                System.out.println("");
+                player.setMaxHealth(player.getMaxHealth() - 30);
+                System.out.println("Your maximum health has decreased by 30 points to " + player.getMaxHealth());
+                System.out.println("");
+                System.out.println("You sleep in the inn and embark to Arrowmoor in the morning. It costs you 30 rupees and your wounds are healed.");
+                player.setHealth(player.getMaxHealth());
+                playerInventory.setNoOfRupees(playerInventory.getNoOfRupees() - 30);
+                break;
+            case 5:
+                System.out.println("The old woman is taken aback.");
+                System.out.println("");
+                System.out.println("OLD WOMAN: 'I never knew I could experience such cruelty.'");
+                System.out.println("");
+                System.out.println("OLD WOMAN: '...'");
+                System.out.println("");
+                System.out.println("OLD WOMAN: 'I hope you find the peace you need and become a better person one day.'");
+                System.out.println("");
+                System.out.println("You enter the inn.");
+                System.out.println();
+                System.out.println("Innkeeper: 'Get out. I heard what you said to Katherine. She's never hurt a soul in her life.'");
+                System.out.println("");
+                System.out.println("Innkeeper: 'Your heart is full of hate. Your soul is irredeemable. '");
+                System.out.println("");
+                System.out.println("Innkeeper: 'You are not welcome here.");
+                System.out.println("");
+                System.out.println("You sleep outside. It rains on you, waking you up periodically throughout the night.");
+                System.out.println("");
+                System.out.println("You start sneezing. It hurts. You are also still wounded from the battle with the Draugr. You feel irreversibly weaker.");
+                System.out.println("");
+                player.setMaxHealth(player.getMaxHealth() - 50);
+                System.out.println("Your maximum health has decreased by 50 points to " + player.getMaxHealth() + ".");
+                System.out.println("");
+                player.setStrength(player.getStrength() - 20);
+                System.out.println("Your strength has decreased by 20 points to " + player.getStrength() + ".");
+                System.out.println("");
+                System.out.println("You check your pockets. At some point you were robbed of 300 rupees during the night.");
+                playerInventory.setNoOfRupees(playerInventory.getNoOfRupees() - 300);
+                System.out.println("YOUR WALLET: " + playerInventory.getNoOfRupees() + " RUPEES");
+                System.out.println("");
+                System.out.println("This is what you deserve. Hate spawns hate. Greed spawns greed. Someone needs to break the cycle.");
+                break;
+        }
+        System.out.println("");
+        System.out.println("You reach Uzahr's laboratory and tie Argo to the post.");
+        System.out.println("");
+        System.out.println("Uzahr: 'AHHH!" + player.getName() + "! Welcome back.'");
+        if (responseQ7 == 5) {
+            System.out.println("");
+            System.out.println("Uzahr: 'Woah. You look like shit.'");
+            System.out.println("");
+            System.out.println("Uzahr: 'You must've pissed off a witch or something.'");
+            System.out.println("");
+            System.out.println("You ponder the possibility. WAS she a witch? Did she curse you? It was an odd set of awful circumstances for one night...");
+            System.out.println("");
+        }
+        System.out.println("Uzahr: 'So, how about those draugr horns?'");
+        System.out.println("");
+        System.out.println("You hand him the horns.");
+        System.out.println("");
+        System.out.println("Uzahr: 'Thank you '" + player.getName() + ". You have performed admirably'");
+        System.out.println("");
+        System.out.println("Uzahr: 'You may rest in those chambers until your next quest. I need to perform some experiments. We shall speak later.'");
+
+
     }
+}

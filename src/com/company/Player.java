@@ -8,9 +8,11 @@ class Player extends Person {
         super(name, health, maxHealth, strength);
         this.rageLevel = rageLevel;
     }
+
     public void setRageLevel(int rageLevel) {
         this.rageLevel = rageLevel;
     }
+
     public int getRageLevel() {
         return this.rageLevel;
     }

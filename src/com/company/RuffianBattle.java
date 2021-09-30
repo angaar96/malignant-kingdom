@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -34,7 +35,7 @@ public class RuffianBattle {
                 }
             } else {
                 float ruffianChanceOfHit = rand.nextFloat();
-                if (ruffianChanceOfHit >= 0.6) {
+                if (ruffianChanceOfHit <= 0.6) {
                     player.setHealth(player.getHealth() - ruffian.getStrength());
                     System.out.println("");
                     System.out.println("Oh no! The Ruffian got you!");
@@ -64,6 +65,8 @@ public class RuffianBattle {
             // Player Turn
             System.out.println("YOUR HEALTH: " + player.getHealth() + "/" + player.getMaxHealth());
             System.out.println("");
+            System.out.println("RUFFIAN HEALTH: " + ruffian.getHealth() + "/" + ruffian.getMaxHealth());
+            System.out.println("");
             System.out.println("What should you do?");
             System.out.println("[1] Attack with your sword. You have a 60% chance of a hit.");
             System.out.println("[2] Taunt. Taunting has a 20% chance of your strength increasing by 20 points.");
@@ -72,7 +75,7 @@ public class RuffianBattle {
                 System.out.println("[4]  [CURRENTLY UNAVAILABLE] Blinding Rage - A devastating special attack which generates after your accumulate a rage level of 100.");
                 System.out.println("CURRENT RAGE LEVEL: " + player.getRageLevel() + ". Your rage will increase by 20 for every hit you take.");
             }
-            if (player.getRageLevel() > 100) {
+            if (player.getRageLevel() >= 100) {
                 System.out.println("[4] Use Blinding Rage - A devastating special attack. It has an 80% chance of hitting. ");
             }
             System.out.println("PLEASE SELECT AN ACTION BY ENTERING AN NUMBER:");
@@ -80,13 +83,13 @@ public class RuffianBattle {
             switch (playerBattleChoice) {
                 case 1:
                     float playerChanceOfHit = rand.nextFloat();
-                    if (playerChanceOfHit >= 0.6) {
+                    if (playerChanceOfHit <= 0.6) {
                         ruffian.setHealth(ruffian.getHealth() - player.getStrength());
                         System.out.println("You stab the ruffian with your blade");
                         System.out.println("");
                         System.out.println("He takes " + player.getStrength() + " points of damage.");
                         System.out.println("");
-                        System.out.println("RUFFIAN HEALTH: " + ruffian.getHealth());
+                        System.out.println("RUFFIAN HEALTH: " + ruffian.getHealth() + "/" + ruffian.getMaxHealth());
                     } else {
                         System.out.println("You missed! The ruffian is a crafty bugger.");
                     }
@@ -108,20 +111,25 @@ public class RuffianBattle {
                     break;
                 case 3:
                     playerInventory.setNoOfPotions(playerInventory.getNoOfPotions() - 1);
-                    player.setHealth(player.getHealth() + 40);
+                    if (player.getHealth() + 40 > player.getMaxHealth()) {
+                        player.setHealth(player.getMaxHealth());
+                    } else {
+                        player.setHealth(player.getHealth() + 40);
+                    }
                     System.out.println("");
                     System.out.println("You have used a potion and recovered 40 health points.");
                     System.out.println("");
                     System.out.println("You now have " + playerInventory.getNoOfPotions() + " potions left");
                     System.out.println("");
                     System.out.println("YOUR HEALTH: " + player.getHealth() + "/" + player.getMaxHealth());
+                    break;
                 case 4:
-                    if (player.getRageLevel() > 100) {
+                    if (player.getRageLevel() >= 100) {
                         player.setRageLevel(player.getRageLevel() - 100);
                         float blindingRageChanceOfHit = rand.nextFloat();
                         if (blindingRageChanceOfHit >= 0.2) {
                             int damageToRuffian = 100;
-                            ruffian.setHealth(ruffian.getHealth()- 100);
+                            ruffian.setHealth(ruffian.getHealth() - 100);
                             System.out.println("You stab the ruffian with your blade.");
                             System.out.println("He takes " + 100 + " points of damage.");
                             System.out.println("RUFFIAN HEALTH: " + ruffian.getHealth());
