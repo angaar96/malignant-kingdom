@@ -12,6 +12,12 @@ Can you survive this malignant kingdom?
 
 The game can be played in the console. Clone the repository and play it using your Java IDE of choice (e.g. IntelliJ).
 
+## Screenshots 
+
+![alt text](./readme_content.png)
+![alt text](./readme_content_2.png)
+![alt text](./readme_content_3.png)
+
 ## Languages/Frameworks Used
 
 * Java
