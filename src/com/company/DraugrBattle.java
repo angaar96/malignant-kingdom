@@ -41,7 +41,7 @@ public class DraugrBattle {
                     draugr.setStrength(70);
                     draugr.setHealth(draugr.getHealth() + 20);
                     System.out.println("");
-                    System.out.println("The Draugr has become enraged! His strength has increased to 70 and he has healed 20 health points.'");
+                    System.out.println("The Draugr has become enraged! His strength has increased to 70 and he has healed 20 health points.");
                     System.out.println("");
                     System.out.println("         .            )        )\n" +
                             "                  (  (|              .\n" +
@@ -130,7 +130,7 @@ public class DraugrBattle {
                     float playerChanceOfHit = rand.nextFloat();
                     if (playerChanceOfHit <= 0.6) {
                         draugr.setHealth(draugr.getHealth() - player.getStrength());
-                        System.out.println("You stab the Draugr with your blade");
+                        System.out.println("You stab the Draugr with your blade.");
                         System.out.println("");
                         System.out.println("He takes " + player.getStrength() + " points of damage.");
                         System.out.println("");
