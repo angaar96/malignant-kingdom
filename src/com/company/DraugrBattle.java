@@ -8,12 +8,14 @@ public class DraugrBattle {
     Player player;
     Inventory playerInventory;
     Inventory draugrInventory;
+    boolean isEnraged;
 
-    public DraugrBattle(Draugr draugr, Player player, Inventory playerInventory, Inventory draugrInventory) {
+    public DraugrBattle(Draugr draugr, Player player, Inventory playerInventory, Inventory draugrInventory, boolean isEnraged) {
         this.draugr = draugr;
         this.player = player;
         this.playerInventory = playerInventory;
         this.draugrInventory = draugrInventory;
+        this.isEnraged = isEnraged;
     }
 
     public void runBattle() {
@@ -32,12 +34,15 @@ public class DraugrBattle {
                     System.out.println("The Draugr has taken a potion and healed 40 points.");
                     System.out.println("");
                     System.out.println("DRAUGR HEALTH: " + draugr.getHealth() + "/" + draugr.getMaxHealth());
+                } else {
+                    continue;
                 }
             } else if (draugr.getHealth() <= 70) {
-                // The Draugr has a 50% chance of becoming enraged if his health reaches below 20% of his maximum health (which is 70/350). and he doesn't take a potion.
+                // The Draugr has a 40% chance of becoming enraged if his health reaches below 20% of his maximum health (which is 70/350). and he doesn't take a potion.
                 // In the enraged state, his strength increases to 70, and he heals 20 health points.
                 float draugrChanceOfBecomingEnraged = rand.nextFloat();
-                if (draugrChanceOfBecomingEnraged <= 0.5) {
+                if (draugrChanceOfBecomingEnraged <= 0.4 && this.isEnraged == false) {
+                    this.isEnraged = true;
                     draugr.setStrength(70);
                     draugr.setHealth(draugr.getHealth() + 20);
                     System.out.println("");
@@ -113,6 +118,7 @@ public class DraugrBattle {
             System.out.println("DRAUGR HEALTH: " + draugr.getHealth() + "/" + draugr.getMaxHealth());
             System.out.println("");
             System.out.println("What should you do?");
+            System.out.println("");
             System.out.println("[1] Attack with your sword. You have a 60% chance of a hit.");
             System.out.println("[2] Taunt. Taunting has a 40% chance of your strength increasing by 20 points.");
             System.out.println("[3] Use a potion. A potion heals 40 health points.");
@@ -124,6 +130,7 @@ public class DraugrBattle {
                 System.out.println("[4] Use Blinding Rage - A devastating special attack. It has an 80% chance of hitting. ");
             }
             System.out.println("PLEASE SELECT AN ACTION BY ENTERING AN NUMBER:");
+            System.out.println("");
             int playerBattleChoice = choice.nextInt();
             switch (playerBattleChoice) {
                 case 1:
@@ -175,8 +182,8 @@ public class DraugrBattle {
                         if (blindingRageChanceOfHit >= 0.2) {
                             int damageToDraugr = 100;
                             draugr.setHealth(draugr.getHealth() - 100);
-                            System.out.println("You stab the Draugr with your blade.");
-                            System.out.println("He takes " + 100 + " points of damage.");
+                            System.out.println("You carry out a flurry of attacks in a Blinding Rage.");
+                            System.out.println("The Draugr takes " + 100 + " points of damage.");
                             System.out.println("DRAUGR HEALTH: " + draugr.getHealth() + "/" + draugr.getMaxHealth());
                         } else {
                             System.out.println("Oh no! After all that buildup, your Blinding Rage attack missed the Draugr! Unlucky!");

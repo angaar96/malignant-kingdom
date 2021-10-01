@@ -68,6 +68,7 @@ public class RuffianBattle {
             System.out.println("RUFFIAN HEALTH: " + ruffian.getHealth() + "/" + ruffian.getMaxHealth());
             System.out.println("");
             System.out.println("What should you do?");
+            System.out.println("");
             System.out.println("[1] Attack with your sword. You have a 60% chance of a hit.");
             System.out.println("[2] Taunt. Taunting has a 20% chance of your strength increasing by 20 points.");
             System.out.println("[3] Use a potion. A potion heals 40 health points.");
@@ -79,13 +80,14 @@ public class RuffianBattle {
                 System.out.println("[4] Use Blinding Rage - A devastating special attack. It has an 80% chance of hitting. ");
             }
             System.out.println("PLEASE SELECT AN ACTION BY ENTERING AN NUMBER:");
+            System.out.println("");
             int playerBattleChoice = choice.nextInt();
             switch (playerBattleChoice) {
                 case 1:
                     float playerChanceOfHit = rand.nextFloat();
                     if (playerChanceOfHit <= 0.6) {
                         ruffian.setHealth(ruffian.getHealth() - player.getStrength());
-                        System.out.println("You stab the ruffian with your blade");
+                        System.out.println("You stab the ruffian with your blade.");
                         System.out.println("");
                         System.out.println("He takes " + player.getStrength() + " points of damage.");
                         System.out.println("");
@@ -130,8 +132,8 @@ public class RuffianBattle {
                         if (blindingRageChanceOfHit >= 0.2) {
                             int damageToRuffian = 100;
                             ruffian.setHealth(ruffian.getHealth() - 100);
-                            System.out.println("You stab the ruffian with your blade.");
-                            System.out.println("He takes " + 100 + " points of damage.");
+                            System.out.println("You carry out a flurry of attacks in a Blinding Rage.");
+                            System.out.println("The ruffian takes " + 100 + " points of damage.");
                             System.out.println("RUFFIAN HEALTH: " + ruffian.getHealth());
                         } else {
                             System.out.println("Oh no! After all that buildup, your Blinding Rage attack missed the Ruffian! Unlucky!");
