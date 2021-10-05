@@ -123,7 +123,7 @@ public class DraugrBattle {
             System.out.println("[2] Taunt. Taunting has a 40% chance of your strength increasing by 20 points.");
             System.out.println("[3] Use a potion. A potion heals 40 health points.");
             if (player.getRageLevel() < 100) {
-                System.out.println("[4]  [CURRENTLY UNAVAILABLE] Blinding Rage - A devastating special attack which generates after your accumulate a rage level of 100.");
+                System.out.println("[4]  [CURRENTLY UNAVAILABLE] Blinding Rage - A devastating special attack which generates after you accumulate a rage level of 100.");
                 System.out.println("CURRENT RAGE LEVEL: " + player.getRageLevel() + ". Your rage will increase by 20 for every hit you take.");
             }
             if (player.getRageLevel() >= 100) {
